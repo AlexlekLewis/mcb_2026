@@ -5,8 +5,52 @@ import { CategoryGrid } from "@/components/CategoryGrid";
 import { GoogleReviewsWidget } from "@/components/GoogleReviewsWidget";
 
 export default function Home() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "HomeAndConstructionBusiness",
+    "name": "Modern Curtains and Blinds",
+    "image": "https://moderncurtains.com.au/assets/logo.png",
+    "@id": "https://moderncurtains.com.au",
+    "url": "https://moderncurtains.com.au",
+    "telephone": "1300 663 376",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "123 Design Avenue",
+      "addressLocality": "Melbourne",
+      "addressRegion": "VIC",
+      "postalCode": "3000",
+      "addressCountry": "AU"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": -37.8136,
+      "longitude": 144.9631
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      "opens": "09:00",
+      "closes": "17:00"
+    },
+    "sameAs": [
+      "https://www.facebook.com/moderncurtains",
+      "https://www.instagram.com/moderncurtains"
+    ]
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Hero />
       <GoogleReviewsWidget />
       <ServiceSelector />
