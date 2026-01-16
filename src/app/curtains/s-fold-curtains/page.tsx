@@ -1,0 +1,38 @@
+import { ProductTemplate } from "@/components/ProductTemplate";
+
+export default function SFoldCurtainsPage() {
+    return (
+        <ProductTemplate
+            title="S-Fold Curtains"
+            subtitle="The contemporary choice for fluid, continuous waves."
+            heroImage="/assets/sheer_curtains.png"
+            description="S-Fold (or Wave) curtains are the modern standard for floor-to-ceiling windows. Using a specialized track and tape system, the fabric hangs in continuous, deep 'S' shaped curves that look identical from both the front and back."
+            features={[
+                {
+                    title: "Modern Aesthetic",
+                    description: "Creates a clean, architectural line that complements modern interiors perfectly."
+                },
+                {
+                    title: "Minimal Stack",
+                    description: "The fabric stacks back very neatly, occupying less space than traditional pleats when open."
+                },
+                {
+                    title: "Effortless Glide",
+                    description: "The runner system ensures smooth, nearly silent operation even for large spans."
+                }
+            ]}
+            types={[
+                {
+                    title: "Sheer S-Fold",
+                    description: "The most popular application. Soft, flowing sheers that filter light beautifuly.",
+                    image: "/assets/sheer_curtains.png"
+                },
+                {
+                    title: "Blockout S-Fold",
+                    description: "Combine the wave style with heavy blockout fabrics for a dramatic, moody effect.",
+                    image: "/assets/blockout_curtains.png"
+                }
+            ]}
+        />
+    );
+}

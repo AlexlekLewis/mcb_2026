@@ -1,0 +1,38 @@
+import { ProductTemplate } from "@/components/ProductTemplate";
+
+export default function VerticalBlindsPage() {
+    return (
+        <ProductTemplate
+            title="Vertical Blinds"
+            subtitle="Practical, economical, and perfect for large windows."
+            heroImage="/assets/vertical_blinds_modern.png"
+            description="Modern Vertical Blinds have come a long way. With sleek, chainless bottom weights and contemporary fabric choices, they remain the most practical solution for large sliding doors and floor-to-ceiling windows, offering excellent light control."
+            features={[
+                {
+                    title: "Ideal for Doors",
+                    description: "The blades stack neatly to the side (left, right, or split), allowing easy walkthrough access to outdoor areas."
+                },
+                {
+                    title: "Light Rotation",
+                    description: "Rotate the blades 180 degrees to follow the sun or completely block it out."
+                },
+                {
+                    title: "Cost Effective",
+                    description: "One of the most affordable custom-made solutions for expansive glass areas."
+                }
+            ]}
+            types={[
+                {
+                    title: "Fabric Verticals",
+                    description: "Soft fabric vanes in screen or blockout textures that soften the acoustic of large tiled rooms.",
+                    image: "/assets/vertical_blinds_modern.png"
+                },
+                {
+                    title: "Rigid PVC",
+                    description: "Hard-wearing, wipe-clean blades that require no bottom weights. Great for rentals and high-traffic areas.",
+                    image: "/assets/vertical_blinds_modern.png"
+                }
+            ]}
+        />
+    );
+}
