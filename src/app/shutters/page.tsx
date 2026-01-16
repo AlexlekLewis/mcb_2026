@@ -1,8 +1,12 @@
 import { ProductTemplate } from "@/components/ProductTemplate";
+import { getNearbyLocations } from "@/lib/locations";
 
 export default function ShuttersPage() {
+    const nearby = getNearbyLocations('shutters', 8);
+
     return (
         <ProductTemplate
+            nearbyLocations={nearby}
             title="Plantation Shutters"
             subtitle="Timeless elegance and superior light control."
             heroImage="/assets/Landing_Page_Sample.png" // Using the sample image which looks like a nice interior scene

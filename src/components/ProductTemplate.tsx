@@ -16,6 +16,7 @@ interface ProductType {
     title: string;
     description: string;
     image?: string;
+    href?: string;
 }
 
 interface ProductTemplateProps {
@@ -26,6 +27,7 @@ interface ProductTemplateProps {
     features: ProductFeature[];
     types: ProductType[];
     ctaText?: string;
+    nearbyLocations?: { name: string; slug: string; postcode: string }[];
 }
 
 export function ProductTemplate({
@@ -35,7 +37,8 @@ export function ProductTemplate({
     description,
     features,
     types,
-    ctaText = "Book Free Consultation"
+    ctaText = "Book Free Consultation",
+    nearbyLocations
 }: ProductTemplateProps) {
     return (
         <div className="bg-white min-h-screen">
@@ -135,17 +138,44 @@ export function ProductTemplate({
                                 />
                             </div>
                             <div className="w-full md:w-1/2">
-                                <h3 className="font-serif text-2xl mb-4 text-mcb-charcoal group-hover:text-mcb-terracotta transition-colors">{type.title}</h3>
+                                <h3 className="font-serif text-2xl mb-4 text-mcb-charcoal group-hover:text-mcb-terracotta transition-colors">
+                                    {type.href ? (
+                                        <Link href={type.href}>{type.title}</Link>
+                                    ) : (
+                                        type.title
+                                    )}
+                                </h3>
                                 <p className="text-stone-500 mb-6 leading-relaxed">{type.description}</p>
                                 <div className="flex items-center gap-2 text-mcb-terracotta font-medium uppercase text-sm tracking-wider">
                                     <Check size={16} />
                                     <span>Custom Made</span>
+                                    {type.href && <ArrowRight size={16} className="ml-2" />}
                                 </div>
                             </div>
                         </div>
                     ))}
                 </div>
             </section>
+
+            {/* Nearby Locations / Service Area Graph */}
+            {nearbyLocations && nearbyLocations.length > 0 && (
+                <section className="py-20 bg-stone-50 border-t border-stone-100">
+                    <div className="container mx-auto px-6">
+                        <h3 className="font-serif text-2xl text-mcb-charcoal mb-8 text-center">Also Configuring Homes Near {title.replace('Curtains and Blinds ', '')}</h3>
+                        <div className="flex flex-wrap justify-center gap-4 md:gap-8">
+                            {nearbyLocations.map((loc) => (
+                                <Link
+                                    key={loc.slug}
+                                    href={`/locations/${loc.slug}`}
+                                    className="text-stone-500 hover:text-mcb-terracotta transition-colors text-sm font-medium border-b border-transparent hover:border-mcb-terracotta pb-0.5"
+                                >
+                                    {loc.name} {loc.postcode}
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
 
             {/* CTA Section */}
             <section className="bg-mcb-charcoal text-white py-24 relative overflow-hidden">

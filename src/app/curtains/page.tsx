@@ -1,8 +1,12 @@
 import { ProductTemplate } from "@/components/ProductTemplate";
+import { getNearbyLocations } from "@/lib/locations";
 
 export default function CurtainsPage() {
+    const nearby = getNearbyLocations('curtains', 8);
+
     return (
         <ProductTemplate
+            nearbyLocations={nearby}
             title="Custom Made Curtains"
             subtitle="Soft. Sustainable. Stylish. Elevate your Melbourne home."
             heroImage="/assets/curtain_hero.png" // Using PNG as static hero for speed/consistency, or could use GIF

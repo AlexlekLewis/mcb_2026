@@ -1,8 +1,12 @@
 import { ProductTemplate } from "@/components/ProductTemplate";
+import { getNearbyLocations } from "@/lib/locations";
 
 export default function SecurityPage() {
+    const nearby = getNearbyLocations('security', 8);
+
     return (
         <ProductTemplate
+            nearbyLocations={nearby}
             title="Security Doors & Screens"
             subtitle="Maximum protection without compromising style."
             heroImage="/assets/security_door_hero.png"

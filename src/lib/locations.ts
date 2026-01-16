@@ -36,3 +36,10 @@ export const LOCATIONS: Suburb[] = [
 export function getLocationBySlug(slug: string): Suburb | undefined {
     return LOCATIONS.find(loc => loc.slug === slug);
 }
+
+export function getNearbyLocations(currentSlug: string, count: number = 6): Suburb[] {
+    // For now, we'll return a random selection excluding the current one.
+    // In a real geo-aware app, we'd use haversine distance.
+    const otherLocations = LOCATIONS.filter(loc => loc.slug !== currentSlug);
+    return otherLocations.sort(() => 0.5 - Math.random()).slice(0, count);
+}

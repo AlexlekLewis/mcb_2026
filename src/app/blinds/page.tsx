@@ -1,8 +1,12 @@
 import { ProductTemplate } from "@/components/ProductTemplate";
+import { getNearbyLocations } from "@/lib/locations";
 
 export default function BlindsPage() {
+    const nearby = getNearbyLocations('blinds', 8);
+
     return (
         <ProductTemplate
+            nearbyLocations={nearby}
             title="Premium Roller Blinds"
             subtitle="Sleek design meets everyday functionality."
             heroImage="/assets/roller_blind_hero.png"

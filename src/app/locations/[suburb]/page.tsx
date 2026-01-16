@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { LOCATIONS, getLocationBySlug } from '@/lib/locations';
+import { LOCATIONS, getLocationBySlug, getNearbyLocations } from '@/lib/locations';
 import { ProductTemplate } from '@/components/ProductTemplate';
 
 interface Props {
@@ -33,6 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function LocationPage({ params }: Props) {
     const suburb = await getLocationBySlug(params.suburb);
+    const nearby = getNearbyLocations(params.suburb);
 
     if (!suburb) {
         notFound();
@@ -57,19 +58,23 @@ export default async function LocationPage({ params }: Props) {
     const types = [
         {
             title: "Roller Blinds",
-            description: `Modern and functional roller blinds for ${suburb.name} homes. Available in blockout, light filtering, and sunscreen fabrics.`
+            description: `Modern and functional roller blinds for ${suburb.name} homes. Available in blockout, light filtering, and sunscreen fabrics.`,
+            href: "/blinds"
         },
         {
             title: "S-Fold Curtains",
-            description: "Elegant sheer and blockout curtains that add improved insulation and style to any room."
+            description: "Elegant sheer and blockout curtains that add improved insulation and style to any room.",
+            href: "/curtains"
         },
         {
             title: "Plantation Shutters",
-            description: "Timeless plantation shutters that increase curbside appeal and offer superior light control."
+            description: "Timeless plantation shutters that increase curbside appeal and offer superior light control.",
+            href: "/shutters"
         },
         {
             title: "Security Doors",
-            description: "Protect your family with our high-grade security doors and screens, custom fitted for maximum strength."
+            description: "Protect your family with our high-grade security doors and screens, custom fitted for maximum strength.",
+            href: "/security"
         }
     ];
 
@@ -82,6 +87,7 @@ export default async function LocationPage({ params }: Props) {
             features={features}
             types={types}
             ctaText="Book Free Measure"
+            nearbyLocations={nearby}
         />
     );
 }
