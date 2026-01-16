@@ -5,6 +5,8 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { ChatWidget } from "@/components/ChatWidget";
 
+import { StickyMobileCTA } from "@/components/StickyMobileCTA";
+
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
 
@@ -58,6 +60,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <ChatWidget />
+        <StickyMobileCTA />
       </body>
     </html>
   );

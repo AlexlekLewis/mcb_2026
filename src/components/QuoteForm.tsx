@@ -109,7 +109,11 @@ const referralOptions = [
     "Other",
 ];
 
+import { useSearchParams } from "next/navigation";
+
 export default function QuoteForm() {
+    const searchParams = useSearchParams();
+
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
@@ -122,6 +126,32 @@ export default function QuoteForm() {
         referrerName: "",
         message: "",
     });
+
+    // Auto-select product from URL
+    useEffect(() => {
+        const productParam = searchParams.get('product');
+        if (productParam) {
+            // Capitalize first letter to match productOptions
+            const formattedProduct = productParam.charAt(0).toUpperCase() + productParam.slice(1);
+            // Handle known mappings if URL param implies a specific category
+            let productToAdd = formattedProduct;
+
+            // Map generic terms to form options if needed (e.g. "shutters" -> "Plantation Shutters")
+            if (formattedProduct.includes("Shutters") && !productOptions.includes(formattedProduct)) {
+                productToAdd = "Plantation Shutters";
+            }
+            if (formattedProduct === "Security") {
+                productToAdd = "Security Doors";
+            }
+
+            if (productOptions.includes(productToAdd)) {
+                setFormData(prev => ({
+                    ...prev,
+                    products: prev.products.includes(productToAdd) ? prev.products : [...prev.products, productToAdd]
+                }));
+            }
+        }
+    }, [searchParams]);
 
     const relevantProductsForCount = [
         "Blinds",

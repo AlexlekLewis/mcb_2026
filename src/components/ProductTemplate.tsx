@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ArrowRight, Check, Star, Phone } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { GoogleReviewsWidget } from "./GoogleReviewsWidget";
+import { ProcessTimeline } from "./ProcessTimeline";
 
 interface ProductFeature {
     title: string;
@@ -121,6 +122,9 @@ export function ProductTemplate({
                 </div>
             </section>
 
+
+            <ProcessTimeline />
+
             {/* Product Types / Collection */}
             <section className="py-24 container mx-auto px-6">
                 <h2 className="font-serif text-3xl md:text-4xl text-mcb-charcoal mb-16 text-center">Our Collection</h2>
@@ -158,24 +162,26 @@ export function ProductTemplate({
             </section>
 
             {/* Nearby Locations / Service Area Graph */}
-            {nearbyLocations && nearbyLocations.length > 0 && (
-                <section className="py-20 bg-stone-50 border-t border-stone-100">
-                    <div className="container mx-auto px-6">
-                        <h3 className="font-serif text-2xl text-mcb-charcoal mb-8 text-center">Also Configuring Homes Near {title.replace('Curtains and Blinds ', '')}</h3>
-                        <div className="flex flex-wrap justify-center gap-4 md:gap-8">
-                            {nearbyLocations.map((loc) => (
-                                <Link
-                                    key={loc.slug}
-                                    href={`/locations/${loc.slug}`}
-                                    className="text-stone-500 hover:text-mcb-terracotta transition-colors text-sm font-medium border-b border-transparent hover:border-mcb-terracotta pb-0.5"
-                                >
-                                    {loc.name} {loc.postcode}
-                                </Link>
-                            ))}
+            {
+                nearbyLocations && nearbyLocations.length > 0 && (
+                    <section className="py-20 bg-stone-50 border-t border-stone-100">
+                        <div className="container mx-auto px-6">
+                            <h3 className="font-serif text-2xl text-mcb-charcoal mb-8 text-center">Also Configuring Homes Near {title.replace('Curtains and Blinds ', '')}</h3>
+                            <div className="flex flex-wrap justify-center gap-4 md:gap-8">
+                                {nearbyLocations.map((loc) => (
+                                    <Link
+                                        key={loc.slug}
+                                        href={`/locations/${loc.slug}`}
+                                        className="text-stone-500 hover:text-mcb-terracotta transition-colors text-sm font-medium border-b border-transparent hover:border-mcb-terracotta pb-0.5"
+                                    >
+                                        {loc.name} {loc.postcode}
+                                    </Link>
+                                ))}
+                            </div>
                         </div>
-                    </div>
-                </section>
-            )}
+                    </section>
+                )
+            }
 
             {/* CTA Section */}
             <section className="bg-mcb-charcoal text-white py-24 relative overflow-hidden">
@@ -186,7 +192,10 @@ export function ProductTemplate({
                     <h2 className="font-serif text-3xl md:text-5xl mb-6">Ready to Transform Your Home?</h2>
                     <p className="text-stone-300 text-lg mb-10 max-w-2xl mx-auto">Book a free in-home consultation with our design experts today.</p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                        <Link href="/quote" className="bg-mcb-terracotta text-white px-10 py-5 rounded-sm text-lg font-bold uppercase tracking-widest hover:bg-white hover:text-mcb-charcoal transition-all shadow-xl hover:shadow-2xl">
+                        <Link
+                            href={`/quote?product=${title.replace('Premium ', '').replace('Custom Made ', '').replace(' & Screens', '')}`}
+                            className="bg-mcb-terracotta text-white px-10 py-5 rounded-sm text-lg font-bold uppercase tracking-widest hover:bg-white hover:text-mcb-charcoal transition-all shadow-xl hover:shadow-2xl"
+                        >
                             {ctaText}
                         </Link>
                         <a href="tel:1300732319" className="flex items-center gap-2 text-white border border-white/30 px-8 py-5 rounded-sm text-lg font-medium hover:bg-white hover:text-mcb-charcoal transition-colors uppercase tracking-widest">
@@ -196,6 +205,6 @@ export function ProductTemplate({
                     </div>
                 </div>
             </section>
-        </div>
+        </div >
     );
 }

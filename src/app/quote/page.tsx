@@ -6,10 +6,14 @@ export const metadata: Metadata = {
     description: "Book a free measure and quote for custom curtains, blinds, shutters, and security doors in Melbourne.",
 };
 
+import { Suspense } from "react";
+
 export default function QuotePage() {
     return (
-        <div className="pt-20"> {/* Add padding to account for fixed navbar if necessary, or just let the form handle it */}
-            <QuoteForm />
+        <div className="pt-20">
+            <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading form...</div>}>
+                <QuoteForm />
+            </Suspense>
         </div>
     );
 }
